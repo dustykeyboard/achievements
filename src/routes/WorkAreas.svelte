@@ -9,12 +9,16 @@
 	let done = () => ($view = 'summary');
 </script>
 
+<svelte:head>
+	<title>Work Areas</title>
+</svelte:head>
+
 <h1>
 	<Greeting />'s work areas
 </h1>
 
 <div class="u-align--right">
-	<button class="p-button p-button--base" on:click|preventDefault={done}>Done</button>
+	<a class="p-button p-button--base" href="/">Done</a>
 </div>
 
 <ul class="p-list--divided">
@@ -36,7 +40,7 @@
 </form>
 
 <div class="u-align--right">
-	<button class="p-button p-button--base" on:click|preventDefault={done}>Done</button>
+	<a class="p-button p-button--base" href="/">Done</a>
 </div>
 
 <style>

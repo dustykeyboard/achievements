@@ -11,16 +11,15 @@
 <script>
 	export let achievement;
 	export let handleFilter;
-	export let editAchievement;
 </script>
 
 <div class="p-card" data-achievement-id={achievement.id}>
 	<h3>
 		{achievement.title}
-		<button
+		<a
 			class="p-button--link is-inline is-dense has-icon"
-			on:click={() => editAchievement(achievement.id)}
-			title="Edit this achievement"><i class="p-icon--plus" /></button
+			href="/Achievement/{achievement.id}"
+			title="Edit this achievement"><i class="p-icon--plus" /></a
 		>
 	</h3>
 	<p>

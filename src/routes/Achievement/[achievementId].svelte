@@ -1,13 +1,23 @@
-<script lang="ts">
-	import { workAreas, achievements, view } from '../stores.js';
-	import Greeting from '../components/Greeting.svelte';
-	import type { Achievement } from '../components/Achievement.svelte';
+<script context="module">
+	export async function load({ params }) {
+		return {
+			props: {
+				achievementId: params.achievementId
+			}
+		};
+	}
+</script>
+
+<script>
+	import { goto } from '$app/navigation';
+	import { workAreas, achievements } from '../../stores.js';
+	import Greeting from '../../components/Greeting.svelte';
 
 	export let achievementId;
 
 	// load existing achievement or create "empty" object
-	let achievement: Achievement = {
-		...$achievements.find((achievement) => achievement.id === achievementId)
+	let achievement = {
+		...$achievements.find((achievement) => achievement.id == achievementId)
 	};
 
 	if (!achievementId) {
@@ -23,13 +33,14 @@
 		// remove the old achievement and store updated the achievement in the store
 		$achievements = [achievement, ...$achievements.filter((a) => a.id != achievement.id)];
 
-		// return to the summary
-		$view = 'summary';
+		// redirect to the list of achievements
+		goto('/');
 	};
-
-	let editWorkAreas = () => ($view = 'workAreas');
-	let cancel = () => ($view = 'summary');
 </script>
+
+<svelte:head>
+	<title>Achievements {achievementId} &rarr; {achievement.title}</title>
+</svelte:head>
 
 <h1>
 	<Greeting />, {achievementId ? 'update your' : 'add an'} achievement
@@ -66,14 +77,12 @@
 					</span>
 				</label>
 			{/each}
-			<button type="button" class="p-button--link" on:click|preventDefault={editWorkAreas}>
-				Edit Work Areas
-			</button>
+			<a class="p-button--link" href="/WorkAreas"> Edit Work Areas </a>
 		</div>
 	</div>
 
 	<div class="u-align--right">
-		<button type="button" class="p-button--base" on:click|preventDefault={cancel}>Cancel</button>
+		<a class="p-button--base" href="/">Cancel</a>
 		<button type="submit" class="p-button" on:click|preventDefault={updateAchievement}
 			>Save Achievement</button
 		>
