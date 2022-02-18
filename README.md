@@ -1,20 +1,12 @@
-# create-svelte
+# Achievements App
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+An application idea from [Document Success Github blog post](https://github.com/readme/guides/document-success)
 
-## Creating a project
 
-If you're seeing this, you've probably already done this step. Congrats!
+- Programmed with [Svelte](https://svelte.dev/docs)
+- Styled with [Vanilla](https://vanillaframework.io/docs)
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
-
-# create a new project in my-app
-npm init svelte@next my-app
-```
-
-> Note: the `@next` is temporary
+---
 
 ## Developing
 
